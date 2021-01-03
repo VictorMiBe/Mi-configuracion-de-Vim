@@ -1,0 +1,66 @@
+"  __  __ _         _                    
+" |  \/  (_) __   _(_)_ __ ___  _ __ ___ 
+" | |\/| | | \ \ / / | '_ ` _ \| '__/ __|
+" | |  | | |  \ V /| | | | | | | | | (__ 
+" |_|  |_|_|   \_/ |_|_| |_| |_|_|  \___|
+                                       
+" Hecho por: Victoor485
+
+let mapleader = " "
+" Configurando entorno
+  syntax on 
+  set mouse=a
+  set clipboard=unnamedplus
+  set number relativenumber
+  set encoding=utf-8
+
+"Trabajando con tabuladores
+  set shiftwidth=4
+  set tabstop=4
+  set expandtab
+  set autoindent
+  filetype indent on  
+  set splitright
+
+"Configurar teclas
+  nnoremap Q !!$SHELL<Enter>
+  nnoremap <F6> :setlocal spell! spelllang=es<Enter>
+
+"Navegando con guias 
+  nnoremap <leader>gs :CocSearch<Enter>
+  nmap <leader>s <Plug>(easymotion-s2)
+  nmap <leader>f :NERDTreeToggle<Enter>
+  nmap <S-t> :vert :term<CR>
+  nmap <leader>q :q<CR>
+  nmap <leader>w :w<CR>
+  nmap <leader>wq :wq<CR>
+
+call plug#begin('~/.vim/plugged')
+
+"IDE
+  Plug 'easymotion/vim-easymotion'
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  Plug 'scrooloose/nerdtree'
+  Plug 'pangloss/vim-javascript' "Javasript support
+  Plug 'vim-airline/vim-airline'
+  Plug 'mattn/emmet-vim'
+" Temas 
+  Plug 'dracula/vim',{'as':'dracula'}
+
+call plug#end() 
+
+let NERDTreeQuitOnOpen=1 
+colorscheme dracula
+
+" GoTo code Navigation
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+" Configurando emmet
+let g:user_emmet_mode='n'    "only enable normal mode functions.
+let g:user_emmet_mode='inv'  "enable all functions, which is equal to
+let g:user_emmet_mode='a'    "enable all function in all mode.
+let g:user_emmet_install_global=0
+autocmd FileType html,css EmmetInstall
